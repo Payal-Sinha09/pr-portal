@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Requisition Form</title>
+    <style>
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+        }
+        div {
+            margin-bottom: 1em;
+        }
+        label {
+            margin-bottom: .5em;
+            color: #333333;
+        }
+        input, select, textarea {
+            border: 1px solid #CCCCCC;
+            padding: .5em;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            margin-top: 1em;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: .5em;
+            text-align: left;
+        }
+        button {
+            padding: 0.7em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: .3em;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Purchase Requisition Form</h1>
+    <form id="prForm" action="http://localhost:5000/save" method="post">
+        <div>
+            <label for="inputDate">Input Date:</label>
+            <input type="date" id="inputDate" name="inputDate" required>
+        </div>
+        <div>
+            <label for="vendorName">Vendor Name:</label>
+            <input type="text" id="vendorName" name="vendorName" required>
+        </div>
+        <div>
+            <label for="vendorAddress">Vendor Address:</label>
+            <input type="text" id="vendorAddress" name="vendorAddress" required>
+        </div>
+        <div>
+            <label for="vendorCity">City:</label>
+            <input type="text" id="vendorCity" name="vendorCity" required>
+        </div>
+        <div>
+            <label for="vendorZip">Zip Code:</label>
+            <input type="text" id="vendorZip" name="vendorZip" required>
+        </div>
+        <div>
+            <label for="vendorState">State:</label>
+            <input type="text" id="vendorState" name="vendorState" required>
+        </div>
+        <div>
+            <label for="vendorCode">Vendor Code:</label>
+            <input type="text" id="vendorCode" name="vendorCode" required>
+        </div>
+        <div>
+            <label for="vendorContact">Vendor Contact Number:</label>
+            <input type="tel" id="vendorContact" name="vendorContact" required>
+        </div>
+        <div>
+            <label for="vendorEmail">Vendor Email Address:</label>
+            <input type="email" id="vendorEmail" name="vendorEmail" required>
+        </div>
+        <div>
+            <label for="shippingAddress">Shipping Address:</label>
+            <input type="text" id="shippingAddress" name="shippingAddress" required>
+        </div>
+        <div>
+            <label for="shippingCity">City:</label>
+            <input type="text" id="shippingCity" name="shippingCity" required>
+        </div>
+        <div>
+            <label for="shippingZip">Zip Code:</label>
+            <input type="text" id="shippingZip" name="shippingZip" required>
+        </div>
+        <div>
+            <label for="shippingState">State:</label>
+            <input type="text" id="shippingState" name="shippingState" required>
+        </div>
+        <div>
+            <label for="plantCode">Plant Code:</label>
+            <input type="text" id="plantCode" name="plantCode" required>
+        </div>
+        <div>
+            <label for="documentType">Document Type:</label>
+            <select id="documentType" name="documentType" onchange="updateForm()" required>
+                <option value="">Select Document Type</option>
+                <option value="ZP06">ZP06</option>
+                <option value="ZP07">ZP07</option>
+                <option value="ZP12">ZP12</option>
+            </select>
+        </div>
+        <div>
+            <label for="purchasingOrganization">Purchasing Organization:</label>
+            <input type="text" id="purchasingOrganization" name="purchasingOrganization" required>
+        </div>
+        <div>
+            <label for="purchasingGroup">Purchasing Group:</label>
+            <input type="text" id="purchasingGroup" name="purchasingGroup" required>
+        </div>
+        <div>
+            <label for="companyCode">Company Code:</label>
+            <input type="text" id="companyCode" name="companyCode" required>
+        </div>
+        
+        <table id="itemDetailsTable">
+            <thead id="tableHead">
+                <!-- Dynamic table headers will be populated here -->
+            </thead>
+            <tbody>
+                <!-- Dynamic rows will be populated here -->
+            </tbody>
+        </table>
+        <button type="button" onclick="addRowToTable()">Add Row</button>
+        
+        <div>
+            <label for="subtotal">Subtotal:</label>
+            <input type="text" id="subtotal" name="subtotal" required>
+        </div>
+        <div>
+            <label for="taxCode">Tax Code:</label>
+            <input type="text" id="taxCode" name="taxCode" required>
+        </div>
+        <div>
+            <label for="controlCode">Control Code:</label>
+            <input type="text" id="controlCode" name="controlCode" required>
+        </div>
+        <div>
+            <label for="reasonForOrdering">Reason for Ordering:</label>
+            <textarea id="reasonForOrdering" name="reasonForOrdering" required></textarea>
+        </div>
+        <div>
+            <label for="materialGroup">Material Group:</label>
+            <input type="text" id="materialGroup" name="materialGroup" required>
+        </div>
+        <div>
+            <label for="wbsElement">WBS Element:</label>
+            <input type="text" id="wbsElement" name="wbsElement" required>
+        </div>
+        <div>
+            <label for="trackingNumber">Tracking Number:</label>
+            <input type="text" id="trackingNumber" name="trackingNumber" required>
+        </div>
+        
+        <div id="additionalFields">
+            <!-- Additional fields will be populated here -->
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function updateForm() {
+            const docType = document.getElementById('documentType').value;
+            const itemDetailsTable = document.getElementById('itemDetailsTable');
+            const tableHead = document.getElementById('tableHead');
+            const additionalFields = document.getElementById('additionalFields');
+            let tableContent = '';
+            let additionalContent = '';
+            let tableHeaders = '';
+
+            if (docType === 'ZP06' || docType === 'ZP07') {
+                tableHeaders = `
+                    <tr>
+                        <th>Item</th>
+                        <th>Account Assignment Category</th>
+                        <th>Material Code</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                `;
+
+                tableContent = `
+                    <tr>
+                        <td><input type="text" name="item[]" required></td>
+                        <td><input type="text" name="accountAssignmentCategory[]" required></td>
+                        <td><input type="text" name="materialCode[]" required></td>
+                        <td><input type="text" name="description[]" required></td>
+                        <td><input type="number" name="quantity[]" required></td>
+                        <td><input type="text" name="amount[]" required></td>
+                        <td><button type="button" onclick="removeRowFromTable(this)">Remove</button></td>
+                    </tr>
+                `;
+
+                if (docType === 'ZP06') {
+                    additionalContent = `
+                        <div>
+                            <label for="partnerFunction">Partner Function:</label>
+                            <input type="text" id="partnerFunction" name="partnerFunction" required>
+                        </div>
+                        <div>
+                            <label for="assetNumber">Asset Number:</label>
+                            <input type="text" id="assetNumber" name="assetNumber" required>
+                        </div>
+                    `;
+                } else {
+                    additionalContent = `
+                        <div>
+                            <label for="partnerFunction">Partner Function:</label>
+                            <input type="text" id="partnerFunction" name="partnerFunction" required>
+                        </div>
+                    `;
+                }
+
+            } else if (docType === 'ZP12') {
+                tableHeaders = `
+                    <tr>
+                        <th>Item</th>
+                        <th>Item Category</th>
+                        <th>Account Assignment Category</th>
+                        <th>Service Number</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                `;
+
+                tableContent = `
+                    <tr>
+                        <td><input type="text" name="item[]" required></td>
+                        <td><input type="text" name="itemCategory[]" required></td>
+                        <td><input type="text" name="accountAssignmentCategory[]" required></td>
+                        <td><input type="text" name="serviceNumber[]" required></td>
+                        <td><input type="text" name="description[]" required></td>
+                        <td><input type="number" name="quantity[]" required></td>
+                        <td><input type="text" name="amount[]" required></td>
+                        <td><button type="button" onclick="removeRowFromTable(this)">Remove</button></td>
+                    </tr>
+                `;
+            }
+
+            tableHead.innerHTML = tableHeaders;
+            itemDetailsTable.querySelector('tbody').innerHTML = tableContent;
+            additionalFields.innerHTML = additionalContent;
+        }
+
+        function addRowToTable() {
+            const docType = document.getElementById('documentType').value;
+            const tableBody = document.querySelector('#itemDetailsTable tbody');
+            let newRow = '';
+
+            if (docType === 'ZP06' || docType === 'ZP07') {
+                newRow = `
+                    <tr>
+                        <td><input type="text" name="item[]" required></td>
+                        <td><input type="text" name="accountAssignmentCategory[]" required></td>
+                        <td><input type="text" name="materialCode[]" required></td>
+                        <td><input type="text" name="description[]" required></td>
+                        <td><input type="number" name="quantity[]" required></td>
+                        <td><input type="text" name="amount[]" required></td>
+                        <td><button type="button" onclick="removeRowFromTable(this)">Remove</button></td>
+                    </tr>
+                `;
+            } else if (docType === 'ZP12') {
+                newRow = `
+                    <tr>
+                        <td><input type="text" name="item[]" required></td>
+                        <td><input type="text" name="itemCategory[]" required></td>
+                        <td><input type="text" name="accountAssignmentCategory[]" required></td>
+                        <td><input type="text" name="serviceNumber[]" required></td>
+                        <td><input type="text" name="description[]" required></td>
+                        <td><input type="number" name="quantity[]" required></td>
+                        <td><input type="text" name="amount[]" required></td>
+                        <td><button type="button" onclick="removeRowFromTable(this)">Remove</button></td>
+                    </tr>
+                `;
+            }
+
+            tableBody.insertAdjacentHTML('beforeend', newRow);
+        }
+
+        function removeRowFromTable(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+    
+        function submitForm(event) {
+        event.preventDefault();
+        const form = document.getElementById('prForm');
+        const formData = new FormData(form);
+        const formObject = {};
+
+        formData.forEach((value, key) => {
+            if (!formObject[key]) {
+                formObject[key] = value;
+            } else {
+                if (!Array.isArray(formObject[key])) {
+                    formObject[key] = [formObject[key]];
+                }
+                formObject[key].push(value);
+            }
+        });
+
+        fetch('http://localhost:5000/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formObject)
+        })
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'pr_form_data.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+    </script>
+</body>
+</html>

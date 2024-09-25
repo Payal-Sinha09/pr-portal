@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bajaj MIS Purchase Requisition Portal</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Additional styles for the dark blue header */
+        .coffee-header {
+            background-color: #001f3f; /* Dark blue color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="bajajlogo.png" alt="Bajaj Logo">
+                <span class="logo-text">MIS PR Portal</span>
+            </div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#about-us">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#pr-form" onclick="openPRForm()">Fill PR Form</a>
+            </nav>
+        </header>
+        <div class="site-content">
+            <div id="home" class="hero">
+                <h1 class="quote">MIS Purchase Requisition Portal</h1>
+            </div>
+
+            <!-- About Us Section -->
+            <section id="about-us">
+                <h1>About Us</h1>
+                <p>Bajaj Auto is a leading manufacturer of motorcycles, scooters, and auto rickshaws. We are known for our commitment to excellence and innovation. Our MIS PR Portal aims to streamline procurement processes, ensuring efficiency and excellence.</p>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services">
+                <h1>Services</h1>
+                <div class="services-list">
+                    <div class="service-card">
+                        <h2>Motorcycle Manufacturing</h2>
+                        <p>Bajaj Auto is renowned for its wide range of motorcycles designed to meet various customer needs. From commuter bikes to high-performance sports bikes, we manufacture reliable and efficient motorcycles. Models include the popular Pulsar, Dominar, and Avenger series.</p>
+                    </div>
+                    <div class="service-card">
+                        <h2>Three-Wheeler Production</h2>
+                        <p>We are a leading manufacturer of three-wheelers, providing affordable and efficient transportation solutions. Our three-wheelers, including the RE and Maxima series, are designed for both passenger and cargo transport.</p>
+                    </div>
+                    <div class="service-card">
+                        <h2>Electric Vehicles (EVs)</h2>
+                        <p>Bajaj Auto is committed to sustainable mobility solutions. Our range of electric scooters, such as the Chetak, combines eco-friendly technology with stylish design and efficient performance.</p>
+                    </div>
+                    <div class="service-card">
+                        <h2>Global Export Services</h2>
+                        <p>Bajaj Auto has a significant global presence, exporting vehicles to over 70 countries. We ensure that our products meet international standards and cater to diverse markets worldwide.</p>
+                    </div>
+                    <div class="service-card">
+                        <h2>After-Sales Service and Support</h2>
+                        <p>Our comprehensive after-sales service ensures that customers receive the best support and maintenance for their vehicles. We provide regular maintenance services, genuine spare parts, and customer support.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer class="footer">
+            &#169; Bajaj Group. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </footer>
+    </div>
+             <!-- PR Form Modal -->
+<div id="prFormModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePRForm()">&times;</span>
+        <!-- Include the PR form content here -->
+        <h1>Purchase Requisition Form</h1>
+        <form id="prForm" action="http://localhost:5000/save" method="post">
+            <div>
+                <label for="inputDate">Input Date:</label>
+                <input type="date" id="inputDate" name="inputDate" required>
+            </div>
+            <div>
+                <label for="vendorName">Vendor Name:</label>
+                <input type="text" id="vendorName" name="vendorName" required>
+            </div>
+            <div>
+                <label for="vendorAddress">Vendor Address:</label>
+                <input type="text" id="vendorAddress" name="vendorAddress" required>
+            </div>
+            <div>
+                <label for="vendorCity">City:</label>
+                <input type="text" id="vendorCity" name="vendorCity" required>
+            </div>
+            <div>
+                <label for="vendorZip">Zip Code:</label>
+                <input type="text" id="vendorZip" name="vendorZip" required>
+            </div>
+            <div>
+                <label for="vendorState">State:</label>
+                <input type="text" id="vendorState" name="vendorState" required>
+            </div>
+            <div>
+                <label for="vendorCode">Vendor Code:</label>
+                <input type="text" id="vendorCode" name="vendorCode" required>
+            </div>
+            <div>
+                <label for="vendorContact">Vendor Contact Number:</label>
+                <input type="tel" id="vendorContact" name="vendorContact" required>
+            </div>
+            <div>
+                <label for="vendorEmail">Vendor Email Address:</label>
+                <input type="email" id="vendorEmail" name="vendorEmail" required>
+            </div>
+            <div>
+                <label for="shippingAddress">Shipping Address:</label>
+                <input type="text" id="shippingAddress" name="shippingAddress" required>
+            </div>
+            <div>
+                <label for="shippingCity">City:</label>
+                <input type="text" id="shippingCity" name="shippingCity" required>
+            </div>
+            <div>
+                <label for="shippingZip">Zip Code:</label>
+                <input type="text" id="shippingZip" name="shippingZip" required>
+            </div>
+            <div>
+                <label for="shippingState">State:</label>
+                <input type="text" id="shippingState" name="shippingState" required>
+            </div>
+            <div>
+                <label for="plantCode">Plant Code:</label>
+                <input type="text" id="plantCode" name="plantCode" required>
+            </div>
+            <div>
+                <label for="documentType">Document Type:</label>
+                <select id="documentType" name="documentType" onchange="updateForm()" required>
+                    <option value="">Select Document Type</option>
+                    <option value="ZP06">ZP06</option>
+                    <option value="ZP07">ZP07</option>
+                    <option value="ZP12">ZP12</option>
+                </select>
+            </div>
+            <div>
+                <label for="purchasingOrganization">Purchasing Organization:</label>
+                <input type="text" id="purchasingOrganization" name="purchasingOrganization" required>
+            </div>
+            <div>
+                <label for="purchasingGroup">Purchasing Group:</label>
+                <input type="text" id="purchasingGroup" name="purchasingGroup" required>
+            </div>
+            <div>
+                <label for="companyCode">Company Code:</label>
+                <input type="text" id="companyCode" name="companyCode" required>
+            </div>
+
+            <table id="itemDetailsTable">
+                <thead id="tableHead">
+                    <!-- Dynamic table headers will be populated here -->
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be populated here -->
+                </tbody>
+            </table>
+            <button type="button" onclick="addRowToTable()">Add Row</button>
+
+            <div>
+                <label for="subtotal">Subtotal:</label>
+                <input type="text" id="subtotal" name="subtotal" required>
+            </div>
+            <div>
+                <label for="taxCode">Tax Code:</label>
+                <input type="text" id="taxCode" name="taxCode" required>
+            </div>
+            <div>
+                <label for="controlCode">Control Code:</label>
+                <input type="text" id="controlCode" name="controlCode" required>
+            </div>
+            <div>
+                <label for="reasonForOrdering">Reason for Ordering:</label>
+                <textarea id="reasonForOrdering" name="reasonForOrdering" required></textarea>
+            </div>
+            <div>
+                <label for="materialGroup">Material Group:</label>
+                <input type="text" id="materialGroup" name="materialGroup" required>
+            </div>
+            <div>
+                <label for="wbsElement">WBS Element:</label>
+                <input type="text" id="wbsElement" name="wbsElement" required>
+            </div>
+            <div>
+                <label for="trackingNumber">Tracking Number:</label>
+                <input type="text" id="trackingNumber" name="trackingNumber" required>
+            </div>
+
+            <div id="additionalFields">
+                <!-- Additional fields will be populated here -->
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+</div>
+
+
+    <script>
+        function updateForm() {
+            const docType = document.getElementById('documentType').value;
+            const itemDetailsTable = document.getElementById('itemDetailsTable');
+            const tableHead = document.getElementById('tableHead');
+            const additionalFields = document.getElementById('additionalFields');
+            let tableContent = '';
+            let additionalContent = '';
+            let tableHeaders = '';
+
+            if (docType === 'ZP06' || docType === 'ZP07') {
+                tableHeaders = `
+                    <tr>
+                        <th>Item</th>
+                        <th>Account Assignment Category</th>
+                        <th>Material Code</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                `;
+
+                tableContent = `
+                    <tr>
+                        <td><input type="text" name="item[]" required></td>
+                        <td><input type="text" name="accountAssignmentCategory[]" required></td>
+                        <td><input type="text" name="materialCode[]" required></td>
+                        <td><input type="text" name="description[]" required></td>
+                        <td><input type="number" name="quantity[]" required></td>
+                        <td><input type="text" name="amount[]" required></td>
+                        <td><button type="button" onclick="removeRowFromTable(this)">Remove</button></td>
+                    </tr>
+                `;
+
+                if (docType === 'ZP06') {
+                    additionalContent = `
+                        <div>
+                            <label for="partnerFunction">Partner Function:</label>
+                            <input type="text" id="partnerFunction" name="partnerFunction" required>
+                        </div>
+                        <div>
+                            <label for="assetNumber">Asset Number:</label>
+                            <input type="text" id="assetNumber" name="assetNumber" required>
+                        </div>
+                    `;
+                } else {
+                    additionalContent = `
+                        <div>
+                            <label for="partnerFunction">Partner Function:</label>
+                            <input type="text" id="partnerFunction" name="partnerFunction" required>
+                        </div>
+                    `;
+                }
+
+            } else if (docType === 'ZP12') {
+                tableHeaders = `
+                    <tr>
+                        <th>Item</th>
+                        <th>Item Category</th>
+                        <th>Account Assignment Category</th>
+                        <th>Service Number</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                `;
+
+                tableContent = `
+                    <tr>
+                        <td><input type="text" name="item[]" required></td>
+                        <td><input type="text" name="itemCategory[]" required></td>
+                        <td><input type="text" name="accountAssignmentCategory[]" required></td>
+                        <td><input type="text" name="serviceNumber[]" required></td>
+                        <td><input type="text" name="description[]" required></td>
+                        <td><input type="number" name="quantity[]" required></td>
+                        <td><input type="text" name="amount[]" required></td>
+                        <td><button type="button" onclick="removeRowFromTable(this)">Remove</button></td>
+                    </tr>
+                `;
+            }
+
+            tableHead.innerHTML = tableHeaders;
+            itemDetailsTable.querySelector('tbody').innerHTML = tableContent;
+            additionalFields.innerHTML = additionalContent;
+        }
+
+        function addRowToTable() {
+            const docType = document.getElementById('documentType').value;
+            const tableBody = document.querySelector('#itemDetailsTable tbody');
+            let newRow = '';
+
+            if (docType === 'ZP06' || docType === 'ZP07') {
+                newRow = `
+                    <tr>
+                        <td><input type="text" name="item[]" required></td>
+                        <td><input type="text" name="accountAssignmentCategory[]" required></td>
+                        <td><input type="text" name="materialCode[]" required></td>
+                        <td><input type="text" name="description[]" required></td>
+                        <td><input type="number" name="quantity[]" required></td>
+                        <td><input type="text" name="amount[]" required></td>
+                        <td><button type="button" onclick="removeRowFromTable(this)">Remove</button></td>
+                    </tr>
+                `;
+            } else if (docType === 'ZP12') {
+                newRow = `
+                    <tr>
+                        <td><input type="text" name="item[]" required></td>
+                        <td><input type="text" name="itemCategory[]" required></td>
+                        <td><input type="text" name="accountAssignmentCategory[]" required></td>
+                        <td><input type="text" name="serviceNumber[]" required></td>
+                        <td><input type="text" name="description[]" required></td>
+                        <td><input type="number" name="quantity[]" required></td>
+                        <td><input type="text" name="amount[]" required></td>
+                        <td><button type="button" onclick="removeRowFromTable(this)">Remove</button></td>
+                    </tr>
+                `;
+            }
+
+            tableBody.insertAdjacentHTML('beforeend', newRow);
+        }
+
+        function removeRowFromTable(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+
+        function submitForm(event) {
+    event.preventDefault();
+    const formData = new FormData(document.getElementById('prForm'));
+    fetch('http://localhost:5000/save', {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            alert('Form submitted successfully!');
+        } else {
+            alert('Failed to submit the form.');
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+}
+        function openPRForm() {
+            document.getElementById('prFormModal').style.display = 'block';
+        }
+
+        function closePRForm() {
+            document.getElementById('prFormModal').style.display = 'none';
+        }
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
