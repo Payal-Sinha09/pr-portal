@@ -119,6 +119,7 @@ const dotenv = require('dotenv');
 // Initialize Express
 const app = express();
 const port = 5000;
+app.use(express.static('public'));
 dotenv.config({ path: 'uri.env' });
 
 const mongoURI = process.env.MONGODB_URI;
@@ -237,9 +238,14 @@ app.post('/save', async (req, res) => {
 });
 
 // Welcome message for the root URL
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the PR Form Submission App');
+// });
+
 app.get('/', (req, res) => {
-    res.send('Welcome to the PR Form Submission App');
-});
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
+  
 
 // Start server
 app.listen(port, () => {
